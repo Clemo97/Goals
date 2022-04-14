@@ -30,7 +30,7 @@ export class GoalComponent implements OnInit {
       4,
       'Get Dog Food',
       'Pupper likes expensive snacks',
-      new Date(2019, 0, 18)
+      new Date(2024, 0, 18)
     ),
     new Goal(5, 'Solve math homework', 'Damn Math', new Date(2019, 2, 14)),
     new Goal(
@@ -41,13 +41,25 @@ export class GoalComponent implements OnInit {
     ),
   ];
 
-  toggleDetails(index: number) {
+  toggleDetails(index: any) {
     this.goals[index].showDescription = !this.goals[index].showDescription;
   }
 
-  completeGoal(isComplete: any, index: number) {
+  completeGoal(isComplete: any, index: any) {
     if (isComplete) {
       this.goals.splice(index, 1);
+    }
+  }
+
+  deleteGoal(isComplete: any, index: any) {
+    if (isComplete) {
+      let toDelete = confirm(
+        `Are you sure you want to delete ${this.goals[index].name}?`
+      );
+
+      if (toDelete) {
+        this.goals.splice(index, 1);
+      }
     }
   }
 
